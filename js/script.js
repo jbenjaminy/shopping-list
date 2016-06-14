@@ -56,6 +56,3 @@ function numberOfItems() {
 	var itemCount = $("li").length;
 	$('footer').text(itemCount + " " + "item(s)");
 }
-
-// Style the enter button
-// gh-pages
