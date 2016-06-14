@@ -1,20 +1,44 @@
 $(document).ready(function() {
 	
 	// -enter items & add to list
+
+	// If event is click || Enter keycode 
+	// $('.input').on('click', keycode == 13, button)
+
+		// Do this code
+
 	$('.input').on('click', 'button', function(event) {
 		event.preventDefault();
 		var newItem = $('#inputBox').val();
+		if (newItem === "") {
+			console.log("No input");
+		} else {
+			$('.items ul').append('<li>' + newItem + '<button><i class="fa fa-trash-o" aria-hidden="true"></i></button>' + '</li>');
+			$('#inputBox').val(null);
+		}
+	})
 
-		$('.items ul').append('<li>' + newItem + " " + "<button>remove</button>" + '</li>');
-		// alphabetic sort
-		// $('#inputBox')[0].reset();
+	.keydown(function(event){
+		if (event.keyCode === 13) {
+			event.preventDefault();
+			var newItem = $('#inputBox').val();
+			if (newItem === "") {
+				console.log("No input");
+			} else {
+				$('.items ul').append('<li>' + newItem + '<button><i class="fa fa-trash-o" aria-hidden="true"></i></button>' + '</li>');
+				$('#inputBox').val(null);
+			}	
+		}
+	});
+
 
 	// check/uncheck items
 	$('.items ul').on('click', 'li', function(event) {
 		event.preventDefault();
-		$(this).css("color", "lightgray")
-			.css("text-decoration", "line-through"); 
-			// try putting in one css method
+		$(this).css({
+			"color": "lightslategray",
+			"text-decoration": "line-through"
+		});
 	})
 
 	//remove items
@@ -25,5 +49,9 @@ $(document).ready(function() {
 
 	// item count
 		// checked items/total items
-	})
+	
 });
+
+// Alphabetic sorting
+// Footer with total items
+// Style the buttons - change remove to icons
