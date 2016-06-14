@@ -1,21 +1,18 @@
 $(document).ready(function() {
+
+	numberOfItems();
 	
 	// -enter items & add to list
-
-	// If event is click || Enter keycode 
-	// $('.input').on('click', keycode == 13, button)
-
-		// Do this code
-
 	$('.input').on('click', 'button', function(event) {
 		event.preventDefault();
 		var newItem = $('#inputBox').val();
 		if (newItem === "") {
 			console.log("No input");
 		} else {
-			$('.items ul').append('<li>' + newItem + '<button><i class="fa fa-trash-o" aria-hidden="true"></i></button>' + '</li>');
-			$('#inputBox').val(null);
+			addItems();
+			numberOfItems();
 		}
+		
 	})
 
 	.keydown(function(event){
@@ -25,12 +22,11 @@ $(document).ready(function() {
 			if (newItem === "") {
 				console.log("No input");
 			} else {
-				$('.items ul').append('<li>' + newItem + '<button><i class="fa fa-trash-o" aria-hidden="true"></i></button>' + '</li>');
-				$('#inputBox').val(null);
+				addItems();
+				numberOfItems();
 			}	
 		}
 	});
-
 
 	// check/uncheck items
 	$('.items ul').on('click', 'li', function(event) {
@@ -41,17 +37,25 @@ $(document).ready(function() {
 		});
 	})
 
-	//remove items
+	// remove items
 	$('.items ul').on('click', 'button', function(event) {
 		event.preventDefault();
 		$(this).closest('li').remove();
+		numberOfItems();
 	})
-
-	// item count
-		// checked items/total items
 	
 });
 
-// Alphabetic sorting
-// Footer with total items
-// Style the buttons - change remove to icons
+function addItems() {
+	var newItem = $('#inputBox').val();
+	$('.items ul').append('<li>' + newItem + '<button><i class="fa fa-trash-o" aria-hidden="true"></i></button>' + '</li>');
+	$('#inputBox').val(null);
+}
+
+function numberOfItems() {
+	var itemCount = $("li").length;
+	$('footer').text(itemCount + " " + "item(s)");
+}
+
+// Style the enter button
+// gh-pages
