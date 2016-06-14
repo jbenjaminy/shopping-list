@@ -6,20 +6,26 @@ $(document).ready(function() {
 	// -enter items & add to list
 	$('.input').on('click', 'button', function(event) {
 		event.preventDefault();
-		var newItem = $('#userInput').val();
-		console.log(newItem);
-		// append method on newitem with if statement
+		var newItem = $('#inputBox').val();
+
+		$('.items ul').append('<li>' + newItem + " " + "<button>remove</button>" + '</li>');
 		// if textbox is empty, adds nothing
 		// else adds to ul
 		// alphabetic sort
+		// $('#inputBox')[0].reset();
 
 	// check/uncheck items
-		// mousedown function on item text
-			// strikethrough text
-			// font color change to grey
-
-	// remove items
-		// $('.items') method to delete from ul
+	$('.items ul').on('click', 'li', function(event) {
+		event.preventDefault();
+		$(this).css("color", "lightgray")
+			.css("text-decoration", "line-through"); 
+			// try putting in one css method
+	})
+	//remove items
+	$('.items ul').on('click', 'button', function(event) {
+		event.preventDefault();
+		$(this).closest('li').remove();
+	})
 
 	// item count
 		// checked items/total items
