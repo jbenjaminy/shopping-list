@@ -5,26 +5,13 @@ $(document).ready(function() {
 	// -enter items & add to list
 	$('.input').on('click', 'button', function(event) {
 		event.preventDefault();
-		var newItem = $('#inputBox').val();
-		if (newItem === "") {
-			console.log("No input");
-		} else {
-			addItems();
-			numberOfItems();
-		}
-		
+		addItems();		
 	})
 
 	.keydown(function(event){
 		if (event.keyCode === 13) {
-			event.preventDefault();
-			var newItem = $('#inputBox').val();
-			if (newItem === "") {
-				console.log("No input");
-			} else {
-				addItems();
-				numberOfItems();
-			}	
+			event.preventDefault();		
+			addItems();
 		}
 	});
 
@@ -46,7 +33,7 @@ $(document).ready(function() {
 	
 });
 
-function addItems() {
+function appendItems() {
 	var newItem = $('#inputBox').val();
 	$('.items ul').append('<li>' + newItem + '<button><i class="fa fa-trash-o" aria-hidden="true"></i></button>' + '</li>');
 	$('#inputBox').val(null);
@@ -55,4 +42,14 @@ function addItems() {
 function numberOfItems() {
 	var itemCount = $("li").length;
 	$('footer').text(itemCount + " " + "item(s)");
+}
+
+function addItems() {
+	var newItem = $('#inputBox').val();
+	if (newItem === "") {
+		console.log("No input");
+	} else {
+		appendItems();
+		numberOfItems();
+	}	
 }
